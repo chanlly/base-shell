@@ -1,12 +1,6 @@
 #!/bin/bash
 
-zshrc="$HOME/.zshrc"
-bash_profile="$HOME/.bash_profile"
-ssh="$HOME/.ssh"
-isZshInstall=0
-
 # 1.安装配置oh-my-zsh
-
 ## 1.1 检查并安装oh-my-zsh
 if [ ! -d .oh-my-zsh ]; then
 	yum install -y curl git vim ntpdate net-tools iproute2 lsof zsh expect
@@ -14,8 +8,13 @@ if [ ! -d .oh-my-zsh ]; then
 	sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 	# exit with evn zsh -l
 	isZshInstall=1
-	exit
+else
+	isZshInstall=0
 fi
+
+zshrc="$HOME/.zshrc"
+bash_profile="$HOME/.bash_profile"
+ssh="$HOME/.ssh"
 
 cd $HOME
 
