@@ -37,8 +37,7 @@ fi
 
 # 2. 配置vimrc
 vimrc="$HOME/.vimrc"
-vimcontent="
-\" Configuration file for vim
+vimcontent="\" Configuration file for vim
 set modelines=0     \" CVE-2007-2438
 
 \" Normally we use vim-extensions. If you want true vi-compatibility
@@ -64,8 +63,8 @@ set ai!
 \" # 显示光标当前位置
 \" set ruler 
 \" # 将tab转换为空格,vim中使用 :retab! 亦可 [set noexpandtab]
-\" set expandtab
-"
+\" set expandtab"
+
 if [ ! -f $vimrc ];then
 	touch $vimrc
 	echo -e "$vimcontent" > $vimrc
