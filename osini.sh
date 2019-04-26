@@ -23,10 +23,22 @@ sed -r 's@(#?)(.*\.bashrc)@#\2@g' $HOME/.bash_profile | sed -r 's@^(#?)(fi)@#\2@
 ## 1.4 配置zsh加载.bash_profile文件
 echo "source .bash_profile" >> "$HOME/.zshrc"
 
-# 配置ssh
+# 2. 配置ssh
 if [ ! -d "$HOME/.ssh"];then
 	mkdir "$HOME/.ssh"
 fi
+chmod 700 "$HOME/.ssh"
 cd $HOME/.ssh
+
+# 创建authorized_keys
+if [ ! -f authorized_keys ]; then
+	touch authorized_keys
+fi
+chmod 600 authorized_keys
+
+# 创建密钥对
+if [ ! -f "id_rsa" ]; then
+    echo "n\n" | ssh-keygen -t rsa -f id_rsa -P "" > /dev/null
+fi
 
 
