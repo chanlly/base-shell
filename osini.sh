@@ -9,8 +9,8 @@ ssh="$HOME/.ssh"
 # 1.安装配置oh-my-zsh
 
 ## 1.1 安装zsh
-$(echo "y\ny\ny\ny\ny\n" | yum install git vim ntpdate net-tools iproute2 wget lsof zsh expect)
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+echo "y\ny\ny\ny\ny\ny\ny\ny\n" | yum install git vim ntpdate net-tools iproute2 wget lsof zsh expect
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
 
 ## 1.2 添加并修改zsh主题
 myZshTheme='local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"\n'
@@ -28,8 +28,6 @@ sed -i -r 's@(#?)(.*\.bashrc)@#\2@g' $bash_profile && sed -i -r 's@^(#?)(fi)@#\2
 
 ## 1.4 配置zsh加载.bash_profile文件
 echo "source .bash_profile" >> $zshrc
-
-source $zshrc
 
 # 2. 配置ssh
 if [ ! -d $ssh ];then
