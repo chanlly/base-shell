@@ -6,10 +6,6 @@ if [ ! -d .oh-my-zsh ]; then
 	yum install -y curl git vim ntpdate net-tools iproute2 lsof zsh expect
 	# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
 	sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-	# exit with evn zsh -l
-	isZshInstall=1
-else
-	isZshInstall=0
 fi
 
 zshrc="$HOME/.zshrc"
@@ -55,9 +51,4 @@ fi
 
 # 输出公钥信息
 cat id_rsa.pub
-
-# change shell
-if [ $isZshInstall -eq 1 ];then
-	env zsh -l
-fi
 
