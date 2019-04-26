@@ -2,6 +2,10 @@
 
 cd $HOME
 
+zshrc="$HOME/.zshrc"
+bash_profile="$HOME/.bash_profile"
+ssh="$HOME/.ssh"
+
 # 1.安装配置oh-my-zsh
 
 ## 1.1 安装zsh
@@ -16,23 +20,23 @@ myZshTheme+='ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "\n'
 myZshTheme+='ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"\n'
 myZshTheme+='ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"'
 
-echo -e "$myZshTheme" > .oh-my-zsh/themes/myrobbyrussell.zsh-theme
-sed -i -r 's@ZSH_THEME="robbyrussell"@#ZSH_THEME="robbyrussell"\nZSH_THEME="myrobbyrussell"@g' .zshrc
+echo -e "$myZshTheme" > "$HOME/.oh-my-zsh/themes/myrobbyrussell.zsh-theme"
+sed -i -r 's@ZSH_THEME="robbyrussell"@#ZSH_THEME="robbyrussell"\nZSH_THEME="myrobbyrussell"@g' $zshrc
 
 # 1.3 注释.bash_pofile加载逻辑(简单处理即可，因为初始化文件比较简单)
-sed -i -r 's@(#?)(.*\.bashrc)@#\2@g' bash_profile && sed -i -r 's@^(#?)(fi)@#\2@g' bash_profile
+sed -i -r 's@(#?)(.*\.bashrc)@#\2@g' $bash_profile && sed -i -r 's@^(#?)(fi)@#\2@g' $bash_profile
 
 ## 1.4 配置zsh加载.bash_profile文件
-echo "source .bash_profile" >> .zshrc
+echo "source .bash_profile" >> $zshrc
 
-source .zshrc
+source $zshrc
 
 # 2. 配置ssh
-if [ ! -d .ssh ];then
-	mkdir .ssh
+if [ ! -d $ssh ];then
+	mkdir $ssh
 fi
-chmod 700 .ssh
-cd .ssh
+chmod 700 $ssh
+cd $ssh
 
 # 创建authorized_keys
 if [ ! -f authorized_keys ]; then
