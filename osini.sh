@@ -1,17 +1,23 @@
 #!/bin/bash
 
-cd $HOME
-
 zshrc="$HOME/.zshrc"
 bash_profile="$HOME/.bash_profile"
 ssh="$HOME/.ssh"
+isZshInstall=0
 
 # 1.安装配置oh-my-zsh
 
-## 1.1 安装zsh
-yum install -y curl git vim ntpdate net-tools iproute2 lsof zsh expect
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
-sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+## 1.1 检查并安装oh-my-zsh
+if [ ! -d .oh-my-zsh ]; then
+	yum install -y curl git vim ntpdate net-tools iproute2 lsof zsh expect
+	# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
+	sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+	# exit with evn zsh -l
+	isZshInstall=1
+	exit
+fi
+
+cd $HOME
 
 ## 1.2 添加并修改zsh主题
 myZshTheme='local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"\n'
@@ -50,4 +56,9 @@ fi
 
 # 输出公钥信息
 cat id_rsa.pub
+
+# change shell
+if [ $isZshInstall -eq 1 ];then
+	env zsh -l
+fi
 
