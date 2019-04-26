@@ -9,8 +9,9 @@ ssh="$HOME/.ssh"
 # 1.安装配置oh-my-zsh
 
 ## 1.1 安装zsh
-echo "y\ny\ny\ny\ny\ny\ny\ny\n" | yum install git vim ntpdate net-tools iproute2 wget lsof zsh expect
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
+yum install -y curl git vim ntpdate net-tools iproute2 lsof zsh expect
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
 ## 1.2 添加并修改zsh主题
 myZshTheme='local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"\n'
