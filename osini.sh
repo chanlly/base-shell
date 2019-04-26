@@ -35,7 +35,43 @@ if [ "`awk '/source .bash_profile/{print $0}' $zshrc`" == ""  ];then
 	echo "source .bash_profile" >> $zshrc
 fi
 
-# 2. 配置ssh
+# 2. 配置vimrc
+vimrc="$HOME/.vimrc"
+vimcontent="
+\" Configuration file for vim
+set modelines=0     \" CVE-2007-2438
+
+\" Normally we use vim-extensions. If you want true vi-compatibility
+\" remove change the following statements
+set nocompatible    \" Use Vim defaults instead of 100% vi compatibility
+set backspace=2     \" more powerful backspacing
+
+\" Don't write backup file if vim is being called by \"crontab -e\"
+au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
+\" Don't write backup file if vim is being called by \"chpass\"
+au BufWrite /private/etc/pw.* set nowritebackup nobackup
+
+\" # 语法高亮
+syntax on
+\" # 自动缩进
+set autoindent
+\" # 设置实际上读到档案的\t(Tab字元)是，要解析几个空白符
+set tabstop=4
+\" # 设置缩进符(Tab或者\t)的宽度为4个空格
+set shiftwidth=4
+set ai!
+\" set nu
+\" # 显示光标当前位置
+\" set ruler 
+\" # 将tab转换为空格,vim中使用 :retab! 亦可 [set noexpandtab]
+\" set expandtab
+"
+if [ ! -f $vimrc ];then
+	touch $vimrc
+	echo -e "$vimcontent" > $vimrc
+fi
+
+# 3. 配置ssh
 if [ ! -d $ssh ];then
 	mkdir $ssh
 fi
