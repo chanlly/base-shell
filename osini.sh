@@ -41,4 +41,6 @@ if [ ! -f "id_rsa" ]; then
     echo "n\n" | ssh-keygen -t rsa -f id_rsa -P "" > /dev/null
 fi
 
+# 输出公钥信息
+cat id_rsa.pub
 
