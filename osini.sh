@@ -17,13 +17,15 @@ myZshTheme+='ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"\n'
 myZshTheme+='ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"'
 
 echo -e "$myZshTheme" > .oh-my-zsh/themes/myrobbyrussell.zsh-theme
-sed -r 's@ZSH_THEME="robbyrussell"@#ZSH_THEME="robbyrussell"\nZSH_THEME="myrobbyrussell"@g' .zshrc > .zshrc
+sed -i -r 's@ZSH_THEME="robbyrussell"@#ZSH_THEME="robbyrussell"\nZSH_THEME="myrobbyrussell"@g' .zshrc
 
 # 1.3 注释.bash_pofile加载逻辑(简单处理即可，因为初始化文件比较简单)
-sed -r 's@(#?)(.*\.bashrc)@#\2@g' .bash_profile | sed -r 's@^(#?)(fi)@#\2@g' > .bash_profile
+sed -i -r 's@(#?)(.*\.bashrc)@#\2@g' bash_profile && sed -i -r 's@^(#?)(fi)@#\2@g' bash_profile
 
 ## 1.4 配置zsh加载.bash_profile文件
 echo "source .bash_profile" >> .zshrc
+
+source .zshrc
 
 # 2. 配置ssh
 if [ ! -d .ssh ];then
