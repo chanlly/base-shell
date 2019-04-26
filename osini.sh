@@ -8,10 +8,10 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 ## 1.2 添加并修改zsh主题
 myZshTheme='local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"\n'
-myZshTheme+='PROMPT="[%n@%m %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)]# "'
-myZshTheme+='ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"'
-myZshTheme+='ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "'
-myZshTheme+='ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"'
+myZshTheme+='PROMPT="[%n@%m %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)]# "\n'
+myZshTheme+='ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"\n'
+myZshTheme+='ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "\n'
+myZshTheme+='ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"\n'
 myZshTheme+='ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"'
 
 echo -e "$myZshTheme" > "$HOME/.oh-my-zsh/themes/myrobbyrussell.zsh-theme"
