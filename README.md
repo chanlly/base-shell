@@ -5,10 +5,10 @@
 
 run
 ```
-wget -qO- https://raw.githubusercontent.com/chanlly/base-shell/master/osini.sh | sh
+sh -c "$(wget https://raw.githubusercontent.com/chanlly/base-shell/master/osini.sh -O -)"
 ```
 or
 ```
-curl -f https://raw.githubusercontent.com/chanlly/base-shell/master/osini.sh | sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/chanlly/base-shell/master/osini.sh)"
 ```
 
