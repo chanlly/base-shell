@@ -6,6 +6,7 @@ if [ ! -d .oh-my-zsh ]; then
 	yum install -y curl git vim ntpdate net-tools iproute2 lsof zsh expect
 	# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
 	sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+	exit
 fi
 
 zshrc="$HOME/.zshrc"
