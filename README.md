@@ -3,12 +3,12 @@
 * 一个简单linux初始化安装脚本
 > 配置生成oh-my-zsh、.ssh、.vimrc
 
-* run
+run
 ```
-sh -c "$(wget https://raw.githubusercontent.com/chanlly/base-shell/master/osini.sh -O -)"
+wget -qO- https://raw.githubusercontent.com/chanlly/base-shell/master/osini.sh | sh
 ```
 or
 ```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/chanlly/base-shell/master/osini.sh)"
+curl -f https://raw.githubusercontent.com/chanlly/base-shell/master/osini.sh | sh
 ```
 
