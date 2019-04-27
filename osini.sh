@@ -217,6 +217,7 @@ fi
 green "create .ssh/id_rsa successful. public key is:"
 cat id_rsa.pub
 
+cd $HOME
 # end:
 if [ "$isInstallZsh" == 'true' ];then
 	env zsh -l
