@@ -220,9 +220,7 @@ cat id_rsa.pub
 cd $HOME
 # end:
 if [ "$isInstallZsh" == 'true' ];then
+	green "change shell to zsh"
 	env zsh -l
-	printf "$(tput setaf 2)"
-	echo "change shell to zsh"
-	printf "$(tput sgr0)"
 fi
 
