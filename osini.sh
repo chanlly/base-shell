@@ -1,5 +1,11 @@
 #!/bin/bash
 
+green() {
+	printf "$(tput setaf 2)"
+	echo "$*"
+	printf "$(tput sgr0)"
+}
+
 main() {
   # Use colors, but only if connected to a terminal, and that terminal
   # supports them.
@@ -208,6 +214,7 @@ if [ ! -f "id_rsa" ]; then
 fi
 
 # 输出公钥信息
+green "create .ssh/id_rsa successful. public key is:"
 cat id_rsa.pub
 
 # end:
