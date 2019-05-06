@@ -1,18 +1,28 @@
 #!/bin/bash
 
-# 1.安装配置oh-my-zsh
-## 1.1 检查并安装oh-my-zsh
-if [ ! -d .oh-my-zsh ]; then
-	yum install -y curl git vim ntpdate net-tools iproute2 lsof zsh expect
-	# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
-	sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-fi
+green() {
+	printf "$(tput setaf 2)"
+	echo "$*"
+	printf "$(tput sgr0)"
+}
 
+isInstallZsh='false'
 zshrc="$HOME/.zshrc"
 bash_profile="$HOME/.bash_profile"
 ssh="$HOME/.ssh"
 
 cd $HOME
+
+# 1.安装配置oh-my-zsh
+## 1.1 检查并安装oh-my-zsh
+if [ ! -d .oh-my-zsh ]; then
+	yum install -y curl wget git vim ntpdate net-tools iproute2 lsof zsh expect
+	#sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+	wget -qO- wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's/env zsh -l/#env zsh -l/g' | sh
+	isInstallZsh='true'
+else
+	isInstallZsh='false'
+fi
 
 ## 1.2 添加并修改zsh主题
 myZshTheme='local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"\n'
@@ -89,5 +99,13 @@ if [ ! -f "id_rsa" ]; then
 fi
 
 # 输出公钥信息
+green "create .ssh/id_rsa successful. public key is:"
 cat id_rsa.pub
+
+cd $HOME
+# end:
+if [ "$isInstallZsh" == 'true' ];then
+	green "change shell to zsh"
+	env zsh -l
+fi
 
