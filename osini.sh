@@ -1,5 +1,14 @@
 #!/bin/bash
 
+set +e
+
+# help
+if [[ ${#@} -ne 0 ]] && [[ "${@#"--help"}" = "" ]]; then
+ printf -- '...help...\n';
+ exit 0;
+fi;
+
+# echo
 green() {
 	printf "$(tput setaf 2)"
 	echo "$*"
@@ -23,6 +32,8 @@ if [ ! -d .oh-my-zsh ]; then
 else
 	isInstallZsh='false'
 fi
+set -e
+
 
 ## 1.2 添加并修改zsh主题
 myZshTheme='local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"\n'
